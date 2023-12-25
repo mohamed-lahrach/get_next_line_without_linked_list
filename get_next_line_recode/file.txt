@@ -1,0 +1,6 @@
+It seems like the issue is that you h
+ave an incomplete if statement in yo
+ur code. The error expectedbef
+ore token typically occurs wh
+en the compiler encounters a synt
+ax error or an incomplete statement. Le
