@@ -1,16 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line.c                                    :+:      :+:    :+:   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/09 21:54:54 by aabdenou          #+#    #+#             */
-/*   Updated: 2023/12/26 18:10:55 by mlahrach         ###   ########.fr       */
+/*   Created: 2023/12/14 12:38:32 by aabdenou          #+#    #+#             */
+/*   Updated: 2023/12/26 18:09:50 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 char	*read_file_into_buffer(char *static_buffer, int fd)
 {
@@ -89,20 +89,21 @@ char	*get_remaining_after_newline(char *static_buffer)
 	while (static_buffer[i] != '\0')
 		remaining_str[j++] = static_buffer[i++];
 	remaining_str[j] = '\0';
-	return (free(static_buffer), remaining_str);
+	free(static_buffer);
+	return (remaining_str);
 }
 
 char	*get_next_line(int fd)
 {
-	static char	*static_buffer;
+	static char	*static_buffer[OPEN_MAX];
 	char		*current_line;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
 		return (NULL);
-	static_buffer = read_file_into_buffer(static_buffer, fd);
-	if (static_buffer == NULL)
+	static_buffer[fd] = read_file_into_buffer(static_buffer[fd], fd);
+	if (static_buffer[fd] == NULL)
 		return (NULL);
-	current_line = copy_until_newline(static_buffer);
-	static_buffer = get_remaining_after_newline(static_buffer);
+	current_line = copy_until_newline(static_buffer[fd]);
+	static_buffer[fd] = get_remaining_after_newline(static_buffer[fd]);
 	return (current_line);
 }

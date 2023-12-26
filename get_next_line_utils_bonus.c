@@ -1,17 +1,16 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_next_line_utils.c                              :+:      :+:    :+:   */
+/*   get_next_line_utils_bonus.c                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mlahrach <mlahrach@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/12/10 18:55:52 by aabdenou          #+#    #+#             */
-/*   Updated: 2023/12/26 18:16:56 by mlahrach         ###   ########.fr       */
+/*   Created: 2023/12/14 13:08:18 by aabdenou          #+#    #+#             */
+/*   Updated: 2023/12/26 18:18:13 by mlahrach         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "get_next_line.h"
-#include <stdbool.h>
+#include "get_next_line_bonus.h"
 
 int	find_char_in_string(const char *s, int c)
 {
@@ -31,14 +30,14 @@ int	find_char_in_string(const char *s, int c)
 	return (0);
 }
 
-size_t	ft_strlen(char *s)
+size_t	ft_strlen(char *str)
 {
 	size_t	i;
 
-	if (s == NULL)
+	if (str == NULL)
 		return (0);
 	i = 0;
-	while (s[i])
+	while (str[i])
 		i++;
 	return (i);
 }
